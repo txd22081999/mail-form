@@ -1,7 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+
 import MainPage from './pages/MainPage';
+
+import './App.scss';
 
 const App = () => {
   return (

@@ -1,0 +1,17 @@
+.MailForm {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  .inputs-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 600px;
+    margin-bottom: 30px;
+  }
+
+  .textarea-container {
+    width: 100%;
+  }
+}
