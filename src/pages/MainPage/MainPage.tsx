@@ -1,16 +1,14 @@
-import React from 'react'
+import { useEffect } from 'react'
 import MailForm from '../../components/MailForm'
-import NotificationWrapper from '../../components/NotificationWrapper/NotificationWrapper'
 
 import './MainPage.scss'
 
-const MainPage = () => {
+const MainPage = (props: any) => {
+  useEffect(() => {}, [])
   return (
-    <div className='MainPage'>
-      <NotificationWrapper>
-        <MailForm />
-      </NotificationWrapper>
-    </div>
+    <main className='MainPage'>
+      <MailForm {...props} />
+    </main>
   )
 }
 

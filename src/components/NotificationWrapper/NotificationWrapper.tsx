@@ -1,42 +1,50 @@
-import React, { cloneElement, ReactElement, ReactNode, useState } from 'react'
+import { cloneElement, useState } from 'react'
+import cls from 'classnames'
 
 import './NotificationWrapper.scss'
+import { INotificationProps } from '../../interfaces'
 
-interface IProps {
-  show?: boolean
-  children: JSX.Element
-}
+type ICallback = () => any
 
-// const NotificationWrapper : React.FC | INotificationWrapper = (props) => {
-// const NotificationWrapper  = (props: ReactNode | INotificationWrapper) => {
-const NotificationWrapper = (props: IProps) => {
+const NotificationWrapper = (props: INotificationProps) => {
   const { show: showProp, children } = props
   const [show, setShow] = useState(showProp || false)
+  const [callback, setCallback] = useState<ICallback>(() => {})
 
   const toggleShow = () => {
     setShow((prevShow) => !prevShow)
   }
 
-  const fireAlert = () => {
+  const fireAlert = (cb: ICallback) => {
+    setShow((prevShow) => !prevShow)
+    setCallback(() => cb)
+  }
+
+  const onCloseClick = () => {
+    // Handle callback of close function
+    if (callback) {
+      callback()
+    }
     toggleShow()
   }
 
   return (
     <div className='NotificationWrapper'>
-      {show && (
-        <div className='notification'>
-          <h1 onClick={toggleShow}>Hello</h1>
-        </div>
-      )}
+      <div className={cls('notification', show && 'show')}>
+        <span
+          className='iconify icon'
+          data-icon='bi:check-circle-fill'
+          data-inline='false'
+          data-width='70'
+          data-height='70'
+        ></span>
+        <h2>Submitted!</h2>
+        <button type='button' className='btn' onClick={onCloseClick}>
+          done
+        </button>
+      </div>
 
-      {cloneElement(children, { fireAlert })}
-      {/* {
-    children.map((child: any) => (
-        cloneElement(child, { fireAlert })
-
-    ))
-} */}
-      {/* {props.children} */}
+      {cloneElement(children, { fireAlert, onAlertClose: onCloseClick })}
     </div>
   )
 }

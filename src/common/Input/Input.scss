@@ -1,8 +1,76 @@
+@import '../../sass/variables';
+
 .Input {
-  input {
-    font-size: 1rem;
-    line-height: 1.1rem;
-    padding: 5px 10px;
-    width: 200px;
+  width: 100%;
+  .unselectable {
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+  }
+
+  .input-wrapper {
+    position: relative;
+
+    input {
+      font-size: 1rem;
+      line-height: 1.1rem;
+      padding: 10px 14px;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid $border-color;
+      outline-width: 1px;
+    }
+
+    input:focus,
+    .has-value {
+      outline-color: $light-purple;
+
+      & + label {
+        transform: translateY(-190%);
+        font-size: 0.75rem;
+      }
+    }
+
+    input:focus {
+      & + label {
+        color: $purple;
+      }
+    }
+
+    input:not(:focus) {
+      &.has-value + label {
+        color: rgb(54, 54, 54);
+      }
+    }
+
+    label {
+      @extend .unselectable;
+      pointer-events: none;
+      display: block;
+      font-size: 1rem;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 14px;
+      background-color: white;
+      padding: 0 2px;
+      transition: 0.2s ease-in;
+    }
+  }
+
+  .error {
+    color: $red;
+    font-size: 0.8rem;
+    margin-left: 12px;
+    margin-top: 5px;
+    opacity: 0;
+    height: 0.8rem;
+    transition: 0.2s ease-in;
+
+    &.show {
+      opacity: 1;
+    }
   }
 }

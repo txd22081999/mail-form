@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
-$placeholder-color: rgb(168, 168, 168);
+@import './sass/variables';
 
 *,
 *::before,
@@ -28,7 +27,32 @@ textarea {
   }
 }
 
+label {
+  color: $placeholder-color;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
 .App {
   width: 100vw;
   height: 100vh;
+}
+
+.btn {
+  text-transform: capitalize;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 20px;
+  background-color: $btn-color;
+  color: white;
+  transition: background-color 0.2s ease-in;
+
+  &:hover {
+    background-color: $btn-hover-color;
+  }
 }

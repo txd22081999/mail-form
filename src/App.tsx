@@ -1,15 +1,16 @@
-import React from 'react';
+import MainPage from './pages/MainPage'
+import NotificationWrapper from './components/NotificationWrapper'
 
-import MainPage from './pages/MainPage';
-
-import './App.scss';
+import './App.scss'
 
 const App = () => {
   return (
-    <div className="App">
-      <MainPage/>
+    <div className='App'>
+      <NotificationWrapper>
+        <MainPage />
+      </NotificationWrapper>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

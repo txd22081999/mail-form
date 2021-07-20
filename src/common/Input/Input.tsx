@@ -1,35 +1,30 @@
-import React from 'react'
-import * as cls from 'classnames'
+import React, { useState } from 'react'
+import cls from 'classnames'
+
 import './Input.scss'
-
-interface IOnChange {
-  // (e: React.FormEvent<HTMLInputElement>): string
-  (e: React.ChangeEvent<HTMLInputElement>): void
-}
-
-interface IInputProps {
-  placeholder?: string
-  type?: string
-  name: string
-  autoComplete?: string
-  value?: string
-  validation?: string
-  onChange?: IOnChange
-}
+import { IInputProps } from '../../interfaces'
 
 const Input = (props: IInputProps) => {
-  const {
-    type = 'text',
-    onChange,
-    name,
-    autoComplete,
-    value,
-    validation,
-  } = props
+  const [ignore, setIgnore] = useState(true) // Ignore at the first time page load
+  const { onChange, name, value, label = '', error } = props
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e)
+    setIgnore(false)
+  }
 
   return (
     <div className='Input'>
-      <input type={type} onChange={onChange} {...props} />
+      <div className='input-wrapper'>
+        <input
+          {...props}
+          type='text'
+          onChange={onInputChange}
+          className={cls(value && 'has-value')}
+        />
+        <label htmlFor={name}>{label}</label>
+      </div>
+      <p className={cls('error', error && !ignore && 'show')}>{error}</p>
     </div>
   )
 }
