@@ -106,7 +106,12 @@ const MailForm = (props: any) => {
   }
 
   const validateMessage = (message: string) => {
-    if (trimContent(message).length > MAX_MESSAGE_CHARACTER) {
+    const msg = trimContent(message)
+    if (msg.length === 0) {
+      return `Message content can not be empty!`
+    }
+
+    if (msg.length > MAX_MESSAGE_CHARACTER) {
       return `Limit number of characters reached: ${MAX_MESSAGE_CHARACTER}`
     }
     return ''

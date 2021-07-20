@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import cls from 'classnames'
 
-import './Input.scss'
 import { IInputProps } from '../../interfaces'
+
+import './Input.scss'
 
 const Input = (props: IInputProps) => {
   const [ignore, setIgnore] = useState(true) // Ignore at the first time page load

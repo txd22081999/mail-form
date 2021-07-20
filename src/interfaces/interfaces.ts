@@ -25,7 +25,7 @@ export interface ITextAreaProps {
   readonly name: string
   readonly value?: string
   readonly error?: string
-  readonly onChange?: ITextAreaOnChange
+  readonly onChange: ITextAreaOnChange
   readonly cols?: number
   readonly rows?: number
   readonly style?: object
